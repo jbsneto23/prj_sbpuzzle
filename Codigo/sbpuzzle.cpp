@@ -115,61 +115,8 @@ Puzzle::Puzzle(string file_name)
             file.close();
             exit(-1);
         }
-
         int r, c, w, h;
         char d;
-//        // lendo a peça alvo
-//        bool alvo = false;
-//        while(!file.eof() && !alvo){
-//            // limpando ss
-//            ss.str("");
-//            ss.clear();
-//            // lendo a próxima linha
-//            getline(file, buffer);
-//            ss << buffer;
-//            ss >> r >> c >> w >> h >> d;
-//            if(r < 1 || r > rows || c < 1 || c > columns){
-//                cerr << "sbpuzzle: o bloco representado pela linha '" << buffer << "' esta fora do tabuleiro, portanto sera descartado." << endl;
-//            } else {
-//                if(w < 1 || w > rows || h < 1 || h > columns){
-//                    cerr << "sbpuzzle: o bloco representado pela linha '" << buffer << "' esta com dimensoes negativas ou que ultrapassam o tabuleiro, portanto sera descartado." << endl;
-//                } else {
-//                    if((r - 1 + h) > rows || (c - 1 + w) > columns){
-//                        cout << (r - 1 + h) << "   " << (c - 1 + w) << endl;
-//                        cerr << "sbpuzzle: o bloco representado pela linha '" << buffer << "' esta com dimensoes que ultrapassam o tabuleiro, portanto sera descartado." << endl;
-//                    } else {
-//                        if(d != 'a' && d != 'h' && d != 'v'){
-//                            cerr << "sbpuzzle: o bloco representado pela linha '" << buffer << "' nao possui uma direcao de deslocamento valida, portanto sera descartado." << endl;
-//                        } else {
-//                            alvo = true;
-//                            for(int i = r - 1; i < r - 1 + h; i++){
-//                                for(int j = c - 1; j < c - 1 + w; j++){
-//                                    if(board[i][j] != -1){
-//                                        alvo = false;
-//                                    }
-//                                }
-//                            }
-//                            if(alvo){
-//                                Block blockAlvo = Block(0, r - 1, c - 1, w, h, d);
-//                                blocks.push_back(blockAlvo);
-//                                for(int i = r - 1; i < r - 1 + h; i++){
-//                                    for(int j = c - 1; j < c - 1 + w; j++){
-//                                        board[i][j] = 0;
-//                                    }
-//                                }
-//                            } else {
-//                                cerr << "sbpuzzle: o bloco representado pela linha '" << buffer << "' esta sobrepondo outro bloco, portanto sera descartado." << endl;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if(!alvo){
-//            cerr << "sbpuzzle: nenhum bloco foi considerado valido." << endl;
-//            exit(-1);
-//        }
-        // lendo os blocos restantes
         int number = 0;
         while(!file.eof() && number <= 127){
             // limpando ss
@@ -371,6 +318,8 @@ Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks): blocks(bks)
     columns = c;
     board = new int*[rows];
     stringstream ss;
+    ss.str("");
+    ss.clear();
     for(int i = 0; i < rows; i++){
         board[i] = new int[columns];
         for(int j = 0; j < columns; j++){
@@ -394,6 +343,8 @@ Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks, queue<string> m, in
     columns = c;
     board = new int*[rows];
     stringstream ss;
+    ss.str("");
+    ss.clear();
     for(int i = 0; i < rows; i++){
         board[i] = new int[columns];
         for(int j = 0; j < columns; j++){
@@ -412,7 +363,11 @@ Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks, queue<string> m, in
     // Adicionando a jogada a fila de jogadas moves
     ss.str("");
     ss.clear();
-    ss << "Bloco " << numBlock << " " << directionMove << " " <<  (qtdMoves == 1 ? "posicao" : "posicoes");
+    if(numBlock == 0){
+        ss << "Bloco X " << directionMove << " " <<  qtdMoves << (qtdMoves == 1 ? " posicao" : " posicoes");
+    } else {
+        ss << "Bloco " << numBlock  << " " << directionMove << " " <<  qtdMoves << (qtdMoves == 1 ? " posicao" : " posicoes");
+    }
     moves.push(ss.str());
 }
 
@@ -570,7 +525,7 @@ bool HashTable::insert(string key, Snapshot* shot)
     Node* pt = table[index];
     Node* ante = NULL;
     while(pt != NULL){
-        if(strcmp(key.c_str(), pt->key.c_str()) == 0){
+        if(strcmp(key.c_str(), pt->shot->get_key().substr(0, key.size()).c_str()) == 0){
             return false;
         } else {
             ante = pt;
@@ -595,7 +550,7 @@ Snapshot* HashTable::get(string key)
     int index = hash(key);
     Node* pt = table[index];
     while(pt != NULL){
-        if(strcmp(key.c_str(), pt->key.c_str()) == 0){
+        if(strcmp(key.c_str(), pt->shot->get_key().substr(0, key.size()).c_str()) == 0){
             return pt->shot;
         } else {
             pt = pt->next;
@@ -608,53 +563,367 @@ int HashTable::size()
 {
     return s;
 }
+
+void HashTable::print_content()
+{
+    for(int i = 0; i < length; i++){
+        if(table[i] != NULL){
+            cout << "Indice: " << i << endl;
+            Node* pt = table[i];
+            while(pt != NULL){
+                cout << pt->shot->to_string() << endl;
+                pt = pt->next;
+            }
+            cout << "-----------" << endl;
+        }
+    }
+}
 // -----------------------------------------------------------------
 
-sbpuzzle::sbpuzzle()
+void sbpuzzle::solucionar(string tabuleiro_file)
 {
-    //ctor
-}
+    Puzzle puzzle(tabuleiro_file);
+    Snapshot* snap = new Snapshot(puzzle.get_rows(), puzzle.get_columns(), puzzle.get_board(), puzzle.get_blocks());
 
-sbpuzzle::~sbpuzzle()
-{
-    //dtor
+    cout << "Quebra-Cabeca de Blocos Deslizantes" << endl;
+    cout << snap->to_string() << endl;
+
+    if(snap->is_solution()){
+        cout << "A peca alvo ja esta na posicao alvo neste tabuleiro."<< endl;
+    } else {
+        int rows = puzzle.get_rows();
+        int columns = puzzle.get_columns();
+        HashTable table(rows, columns);
+        table.insert(snap->get_key(), snap);
+        queue<string> fila;
+        fila.push(snap->get_key());
+        Snapshot* solucao = NULL;
+        while(!fila.empty()){
+            string key = fila.front();
+            fila.pop();
+            Snapshot* ss = table.get(key);
+            int** original_board = ss->get_board();
+
+            // Copiando o conteudo
+            int** board = new int*[rows];
+            for(int i = 0; i < rows; i++){
+                board[i] = new int[columns];
+                for(int j = 0; j < columns; j++){
+                    board[i][j] = original_board[i][j]; // copiando o conteudo de b
+                }
+            }
+
+            // Tentativas de movimentação
+            for(int i = 0; i < ss->get_blocks().size(); i++){
+                Block block = ss->get_blocks().at(i);
+                int r = block.get_row();
+                int c = block.get_column();
+                int w = block.get_width();
+                int h = block.get_height();
+
+                // Tentar mover horizontalmente
+                if(block.get_direction() == 'a' || block.get_direction() == 'h'){
+                    // movendo para Leste
+                    int qtd = 0;
+                    int initC = c;
+                    bool tentar = true;
+                    int coluna = initC + w;
+                    while(tentar && coluna < columns){
+                        bool livre = true;
+                        for(int k = r; k < r + h; k++){
+                            if(board[k][coluna] != -1){
+                                livre = false;
+                            }
+                        }
+                        if(livre){
+                            // deixando a antiga coluna livre
+                            for(int k = r; k < r + h; k++){
+                                board[k][initC] = -1;
+                            }
+                            // ocupando a coluna seguinta
+                            for(int k = r; k < r + h; k++){
+                                board[k][coluna] = i;
+                            }
+                            qtd += 1;
+                            Block novoBlock(block.get_number(), block.get_row(), block.get_column() + qtd, block.get_width(), block.get_height(), block.get_direction());
+                            vector<Block> novoBlocks(ss->get_blocks());
+                            novoBlocks.at(i) = novoBlock;
+                            Snapshot* novoSs = new Snapshot(rows, columns, board, novoBlocks, ss->get_moves(), i, "Leste", qtd);
+                            if(novoSs->is_solution()){
+                                solucao = novoSs;
+                                tentar = false;
+                            } else {
+                                if(table.insert(novoSs->get_key(), novoSs)){
+                                    fila.push(novoSs->get_key());
+                                }
+                                coluna += 1;
+                                initC += 1;
+                            }
+                        } else {
+                            tentar = false;
+                        }
+                    }
+
+                    // voltando o tabuleiro ao estado inicial
+//                    while(qtd > 0){
+//                        for(int k = r; k < r + h; k++){
+//                            board[k][initC] = i;
+//                        }
+//                        // ocupando a coluna seguinta
+//                        for(int k = r; k < r + h; k++){
+//                            board[k][initC + w] = -1;
+//                        }
+//                        initC -= 1;
+//                        qtd -= 1;
+//                    }
+
+                    for(int k = 0; k < rows; k++){
+                        for(int r = 0; r < columns; r++){
+                            board[k][r] = original_board[k][r]; // copiando o conteudo de b
+                        }
+                    }
+                    // movendo para Oeste
+                    tentar = true;
+                    qtd = 0;
+                    initC = c;
+                    coluna = initC - 1;
+                    while(tentar && coluna >= 0){
+                        bool livre = true;
+                        for(int k = r; k < r + h; k++){
+                            if(board[k][coluna] != -1){
+                                livre = false;
+                            }
+                        }
+                        if(livre){
+                            // ocupando a coluna anterior
+                            for(int k = r; k < r + h; k++){
+                                board[k][coluna] = i;
+                            }
+                            // liberando a coluna anti
+                            for(int k = r; k < r + h; k++){
+                                board[k][initC + w - 1] = -1;
+                            }
+                            qtd += 1;
+                            Block novoBlock(block.get_number(), block.get_row(), block.get_column() - qtd, block.get_width(), block.get_height(), block.get_direction());
+                            vector<Block> novoBlocks(ss->get_blocks());
+                            novoBlocks.at(i) = novoBlock;
+                            Snapshot* novoSs = new Snapshot(rows, columns, board, novoBlocks, ss->get_moves(), i, "Oeste", qtd);
+                            if(novoSs->is_solution()){
+                                solucao = novoSs;
+                                tentar = false;
+                            } else {
+                                if(table.insert(novoSs->get_key(), novoSs)){
+                                    fila.push(novoSs->get_key());
+                                }
+                                coluna -= 1;
+                                initC -= 1;
+                            }
+
+                        } else {
+                            tentar = false;
+                        }
+                    }
+
+                    // voltando o tabuleiro ao estado inicial
+//                    while(qtd > 0){
+//                        for(int k = r; k < r + h; k++){
+//                            board[k][initC] = -1;
+//                        }
+//                        initC += 1;
+//                        for(int k = r; k < r + h; k++){
+//                            board[k][initC + w - 1] = i;
+//                        }
+//                        qtd -= 1;
+//                    }
+
+                    for(int k = 0; k < rows; k++){
+                        for(int r = 0; r < columns; r++){
+                            board[k][r] = original_board[k][r]; // copiando o conteudo de b
+                        }
+                    }
+
+                }
+
+                // Tentar mover verticalmente
+                if(block.get_direction() == 'a' || block.get_direction() == 'v'){
+                    // movendo para Norte
+                    int qtd = 0;
+                    int initR = r;
+                    bool tentar = true;
+                    int linha = initR - 1;
+                    while(tentar && linha >= 0){
+                        bool livre = true;
+                        for(int k = c; k <  c + w; k++){
+                            if(board[linha][k] != -1){
+                                livre = false;
+                            }
+                        }
+                        if(livre){
+                            // ocupando a linha de cima
+                            for(int k = c; k <  c + w; k++){
+                                board[linha][k] = i;
+                            }
+                            // liberando a linha de cima
+                            for(int k = c; k <  c + w; k++){
+                                board[initR + h - 1][k] = -1;
+                            }
+                            qtd += 1;
+                            Block novoBlock(block.get_number(), block.get_row() - qtd, block.get_column(), block.get_width(), block.get_height(), block.get_direction());
+                            vector<Block> novoBlocks(ss->get_blocks());
+                            novoBlocks.at(i) = novoBlock;
+                            Snapshot* novoSs = new Snapshot(rows, columns, board, novoBlocks, ss->get_moves(), i, "Norte", qtd);
+                            if(novoSs->is_solution()){
+                                solucao = novoSs;
+                                tentar = false;
+                            } else {
+                                if(table.insert(novoSs->get_key(), novoSs)){
+                                    fila.push(novoSs->get_key());
+                                }
+                                linha -= 1;
+                                initR -= 1;
+                            }
+
+                        } else {
+                            tentar = false;
+                        }
+                    }
+
+                    // voltando o tabuleiro ao estado inicial
+//                    while(qtd > 0){
+//                        for(int k = c; k <  c + w; k++){
+//                            board[initR][k] = -1;
+//                        }
+//                        initR += 1;
+//                        for(int k = c; k <  c + w; k++){
+//                            board[initR + h - 1][k] = i;
+//                        }
+//                        qtd -= 1;
+//                    }
+
+                    for(int k = 0; k < rows; k++){
+                        for(int r = 0; r < columns; r++){
+                            board[k][r] = original_board[k][r]; // copiando o conteudo de b
+                        }
+                    }
+
+                    // movendo para Sul
+                    qtd = 0;
+                    initR = r;
+                    linha = initR + h;
+                    while(tentar && linha < rows){
+                        bool livre = true;
+                        for(int k = c; k <  c + w; k++){
+                            if(board[linha][k] != -1){
+                                livre = false;
+                            }
+                        }
+                        if(livre){
+                            // liberando a linha de cima
+                            for(int k = c; k <  c + w; k++){
+                                board[initR][k] = -1;
+                            }
+                            // ocupando a linha de baixo
+                            for(int k = c; k <  c + w; k++){
+                                board[linha][k] = i;
+                            }
+                            qtd += 1;
+                            Block novoBlock(block.get_number(), block.get_row() + qtd, block.get_column(), block.get_width(), block.get_height(), block.get_direction());
+                            vector<Block> novoBlocks(ss->get_blocks());
+                            novoBlocks.at(i) = novoBlock;
+                            Snapshot* novoSs = new Snapshot(rows, columns, board, novoBlocks, ss->get_moves(), i, "Sul", qtd);
+                            if(novoSs->is_solution()){
+                                solucao = novoSs;
+                                tentar = false;
+                            } else {
+                                if(table.insert(novoSs->get_key(), novoSs)){
+                                    fila.push(novoSs->get_key());
+                                }
+                                linha += 1;
+                                initR += 1;
+                            }
+                        } else {
+                            tentar = false;
+                        }
+                    }
+
+                    // voltando o tabuleiro ao estado inicial
+//                    while(qtd > 0){
+//                        initR -= 1;
+//                        for(int k = c; k <  c + w; k++){
+//                            board[initR][k] = i;
+//                        }
+//                        // ocupando a linha de baixo
+//                        for(int k = c; k <  c + w; k++){
+//                            board[initR + h][k] = -1;
+//                        }
+//                        qtd -= 1;
+//                    }
+
+                    for(int k = 0; k < rows; k++){
+                        for(int r = 0; r < columns; r++){
+                            board[k][r] = original_board[k][r]; // copiando o conteudo de b
+                        }
+                    }
+
+                }
+            }
+            if(solucao != NULL){
+                break;
+            }
+        }
+        if(solucao != NULL){
+            cout << endl << "Solucao:" << endl;
+            int i = 1;
+            queue<string> jogadas(solucao->get_moves());
+            while(jogadas.size() > 0){
+                string str = jogadas.front();
+                jogadas.pop();
+                cout << i << ". " << str << endl;
+                i++;
+            }
+            cout << endl << solucao->to_string() << endl;
+        } else {
+            cout << "Este Quebra-Cabeca nao tem solucao!" << endl;
+        }
+    }
 }
 
 int main(int argc, char *argv[])
 {
     if(argc > 1){
         string file_name = argv[1];
-        Puzzle puzzle = Puzzle(file_name);
-        cout << "Quebra-Cabeca de Blocos Deslizantes" << endl;
-        cout << puzzle.to_string() << endl;
-        string rm = puzzle.rowMajor();
-        cout << "Row Major:" << rm << endl;
-        cout << endl << "Hash RM: " << puzzle.hash(rm) << endl;
-        cout << endl << "Hash: " << puzzle.hash() << endl;
-        Snapshot* snap = new Snapshot(puzzle.get_rows(), puzzle.get_columns(), puzzle.get_board(), puzzle.get_blocks());
-        cout << "Key = " << snap->get_key() << endl;
-        cout << snap->to_string() << endl;
-        cout << "Solucao: " << snap->is_solution() << endl;
-        cout << "--------- Testando a tabela hash ---------" << endl;
-        HashTable ht(puzzle.get_rows(), puzzle.get_columns());
-        cout << "Tamanho = " << ht.size() << endl;
-        for(int i = 1; i < 5; i++){
-            cout << "Tentativa " << i << endl;
-            string st = ht.insert(snap->get_key(), snap) ? "sim" : "nao";
-            cout << "Inseriu: " << st << endl;
-            cout << "Tamanho: " << ht.size() << endl;
-        }
-        cout << endl << "Tamanho = " << ht.size() << endl;
-        Snapshot* s = ht.get(snap->get_key());
-        if(s != NULL){
-            cout << snap->get_key().c_str() << endl;
-            cout << s->get_key() << endl;
-            if(strcmp(s->get_key().c_str(), snap->get_key().c_str()) == 0){
-                cout << "Deu certo!" << endl;
-            } else {
-                cout << "Deu ERRADO!" << endl;
-            }
-        }
+        sbpuzzle::solucionar(file_name);
+//        Puzzle puzzle = Puzzle(file_name);
+//        cout << "Quebra-Cabeca de Blocos Deslizantes" << endl;
+//        cout << puzzle.to_string() << endl;
+//        string rm = puzzle.rowMajor();
+//        cout << "Row Major:" << rm << endl;
+//        cout << endl << "Hash RM: " << puzzle.hash(rm) << endl;
+//        cout << endl << "Hash: " << puzzle.hash() << endl;
+//        Snapshot* snap = new Snapshot(puzzle.get_rows(), puzzle.get_columns(), puzzle.get_board(), puzzle.get_blocks());
+//        cout << "Key = " << snap->get_key() << endl;
+//        cout << snap->to_string() << endl;
+//        cout << "Solucao: " << snap->is_solution() << endl;
+//        cout << "--------- Testando a tabela hash ---------" << endl;
+//        HashTable ht(puzzle.get_rows(), puzzle.get_columns());
+//        cout << "Tamanho = " << ht.size() << endl;
+//        for(int i = 1; i < 5; i++){
+//            cout << "Tentativa " << i << endl;
+//            string st = ht.insert(snap->get_key(), snap) ? "sim" : "nao";
+//            cout << "Inseriu: " << st << endl;
+//            cout << "Tamanho: " << ht.size() << endl;
+//        }
+//        cout << endl << "Tamanho = " << ht.size() << endl;
+//        Snapshot* s = ht.get(snap->get_key());
+//        if(s != NULL){
+//            cout << snap->get_key().c_str() << endl;
+//            cout << s->get_key() << endl;
+//            if(strcmp(s->get_key().c_str(), snap->get_key().c_str()) == 0){
+//                cout << "Deu certo!" << endl;
+//            } else {
+//                cout << "Deu ERRADO!" << endl;
+//            }
+//        }
     } else {
         cerr << "sbpuzzle: nenhum arquivo de entrada foi passado como argumento," << endl;
     }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <list>
 #include <queue>
 
 using namespace std;
@@ -115,6 +116,7 @@ class HashTable
         bool insert(string key, Snapshot* shot); // true se key não estiver na tabela (a inserção é feita) e false caso key já exista (nada é feito)
         Snapshot* get(string key); // retorna ponteiro para objeto Snapshot se key estiver na tabela e NULL caso key não esteja na tabela
         int size();
+        void print_content(); // imprime o conteudo da hashtable
     protected:
     private:
         int rows;
@@ -129,9 +131,10 @@ class sbpuzzle
 {
     public:
         /** Default constructor */
-        sbpuzzle();
+        //sbpuzzle();
         /** Default destructor */
-        virtual ~sbpuzzle();
+        //virtual ~sbpuzzle();
+        static void solucionar(string tabuleiro_file);
     protected:
     private:
 };
