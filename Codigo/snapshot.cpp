@@ -125,10 +125,10 @@ string Snapshot::to_html()
         ss << "<tr>" << endl;
         for(int j = 0; j < columns; j++){
             if(board[i][j] < 0){
-                ss << "<td height=\"50\" width=\"50\"></td>" << endl;
+                ss << "<td bgcolor=\"#87CEFA\" height=\"50\" width=\"50\"></td>" << endl;
             } else if(board[i][j] == 0){
                 if(!signals[0]){
-                    ss << "<td align=\"center\" height=\"50\" width=\"50\"";
+                    ss << "<td bgcolor=\"green\" align=\"center\" height=\"50\" width=\"50\"";
                     if(blocks.at(0).get_width() > 1){
                         ss << " colspan=\"" << blocks.at(0).get_width() << "\"";
                     }
@@ -140,7 +140,7 @@ string Snapshot::to_html()
                 }
             } else {
                 if(!signals[board[i][j]]){
-                    ss << "<td align=\"center\" height=\"50\" width=\"50\"";
+                    ss << "<td bgcolor=\"yellow\" align=\"center\" height=\"50\" width=\"50\"";
                     if(blocks.at(board[i][j]).get_width() > 1){
                         ss << " colspan=\"" << blocks.at(board[i][j]).get_width() << "\"";
                     }

@@ -19,4 +19,3 @@ block.o: block.cpp block.h
 	g++ -c block.cpp -o block.o
 clean:
 	rm *.o sbpuzzle
-	clear
