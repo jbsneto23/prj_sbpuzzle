@@ -43,6 +43,9 @@ Puzzle::Puzzle(string file_name)
             ss.clear();
             // lendo a próxima linha
             getline(file, buffer);
+            if(buffer.empty()){
+                continue;
+            }
             ss << buffer;
             ss >> r >> c >> w >> h >> d;
             if(r < 1 || r > rows || c < 1 || c > columns){
