@@ -4,21 +4,23 @@
 #include <vector>
 #include <queue>
 
+#include "block.h"
+
 using namespace std;
 
 #ifndef SNAPSHOT_H
 #define SNAPSHOT_H
-
 
 class Snapshot
 {
     public:
         /** Default constructor */
         Snapshot(int r, int c, int** b, vector<Block> bks); // construtor para o primeiro estado do tabuleiro (inicio)
-        Snapshot(int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtd);
+        Snapshot(bool html_mode, int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtd);
         /** Default destructor */
         virtual ~Snapshot();
         string to_string(); // retorna o tabuleiro em ascii
+        string to_html(); // retorna o tabuleiro em html (somente a parte table).
         int get_rows();
         int get_columns();
         int** get_board();
@@ -35,5 +37,4 @@ class Snapshot
         vector<Block> blocks;
         queue<string> moves; // jogadas
 };
-
 #endif // SNAPSHOT_H

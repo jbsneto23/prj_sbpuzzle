@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "hashtable.h"
+
 #include "snapshot.h"
 
 HashTable::HashTable(int r, int c)
@@ -33,9 +34,7 @@ HashTable::~HashTable()
 
 int HashTable::hash(string str)
 {
-    int* column = new int[rows];
-    int r = 0;
-    memset(column, 0, sizeof(int) * rows);
+    int soma = 0;
     int i = 0;
     int j = 0;
     int k = 0;
@@ -44,10 +43,10 @@ int HashTable::hash(string str)
             string num = "";
             num = num + str[k];
             int n = atoi(num.c_str());
-            column[i] = column[i] + ((i + 1) * (j + 1) * n);
+            soma = soma + ((i + 1) * (j + 1) * n);
         } else {
             if(str[k] == '.'){
-                column[i] = column[i] + ((i + 1) * (j + 1) * (-1));
+                soma = soma + ((i + 1) * (j + 1) * (-1));
             } else {
                 string num = "";
                 k = k + 1;
@@ -56,7 +55,7 @@ int HashTable::hash(string str)
                     k++;
                 }
                 int n = atoi(num.c_str());
-                column[i] = column[i] + ((i + 1) * (j + 1) * n);
+                soma = soma + ((i + 1) * (j + 1) * n);
             }
         }
         k = k + 1;
@@ -67,11 +66,7 @@ int HashTable::hash(string str)
             i++;
         }
     }
-    for(int i = 0; i < rows; i++){
-        r = r + column[i];
-    }
-    delete[] column;
-    return abs(r) % length;
+    return abs(soma) % length;
 }
 
 bool HashTable::insert(string key, Snapshot* shot)
@@ -80,7 +75,7 @@ bool HashTable::insert(string key, Snapshot* shot)
     Node* pt = table[index];
     Node* ante = NULL;
     while(pt != NULL){
-        if(strcmp(key.c_str(), pt->key.c_str()) == 0){
+        if(strcmp(key.c_str(), pt->shot->get_key().substr(0, key.size()).c_str()) == 0){
             return false;
         } else {
             ante = pt;
@@ -100,22 +95,36 @@ bool HashTable::insert(string key, Snapshot* shot)
     return true;
 }
 
-bool HashTable::get(string key, Snapshot* shot)
+Snapshot* HashTable::get(string key)
 {
     int index = hash(key);
     Node* pt = table[index];
     while(pt != NULL){
-        if(strcmp(key.c_str(), pt->key.c_str()) == 0){
-            shot = pt->shot;
-            return true;
+        if(strcmp(key.c_str(), pt->shot->get_key().substr(0, key.size()).c_str()) == 0){
+            return pt->shot;
         } else {
             pt = pt->next;
         }
     }
-    return false;
+    return NULL;
 }
 
 int HashTable::size()
 {
     return s;
+}
+
+void HashTable::print_content()
+{
+    for(int i = 0; i < length; i++){
+        if(table[i] != NULL){
+            cout << "Indice: " << i << endl;
+            Node* pt = table[i];
+            while(pt != NULL){
+                cout << pt->shot->to_string() << endl;
+                pt = pt->next;
+            }
+            cout << "-----------" << endl;
+        }
+    }
 }

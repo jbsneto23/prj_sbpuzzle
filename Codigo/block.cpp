@@ -79,9 +79,3 @@ void Block::set_direction(char d)
 {
     direction = d;
 }
-
-int main()
-{
-
-    return 0;
-}

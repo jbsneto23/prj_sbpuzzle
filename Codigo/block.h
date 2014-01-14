@@ -30,5 +30,4 @@ class Block
         int height; // altura
         char direction; // direção
 };
-
 #endif // BLOCK_H

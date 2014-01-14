@@ -4,6 +4,8 @@
 #include <vector>
 #include <queue>
 
+#include "block.h"
+
 using namespace std;
 
 #include "snapshot.h"
@@ -14,6 +16,8 @@ Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks): blocks(bks)
     columns = c;
     board = new int*[rows];
     stringstream ss;
+    ss.str("");
+    ss.clear();
     for(int i = 0; i < rows; i++){
         board[i] = new int[columns];
         for(int j = 0; j < columns; j++){
@@ -31,12 +35,14 @@ Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks): blocks(bks)
     key = ss.str();
 }
 
-Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtdMoves): blocks(bks), moves(m)
+Snapshot::Snapshot(bool html_mode, int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtdMoves): blocks(bks), moves(m)
 {
     rows = r;
     columns = c;
     board = new int*[rows];
     stringstream ss;
+    ss.str("");
+    ss.clear();
     for(int i = 0; i < rows; i++){
         board[i] = new int[columns];
         for(int j = 0; j < columns; j++){
@@ -55,7 +61,20 @@ Snapshot::Snapshot(int r, int c, int** b, vector<Block> bks, queue<string> m, in
     // Adicionando a jogada a fila de jogadas moves
     ss.str("");
     ss.clear();
-    ss << "Bloco " << numBlock << " " << directionMove << " " <<  (qtdMoves == 1 ? "posicao" : "posicoes");
+    if(html_mode){
+        if(numBlock == 0){
+            ss << "<h4>Bloco X " << directionMove << " " <<  qtdMoves << (qtdMoves == 1 ? " posição" : " posições") << "</h4>" << endl;
+        } else {
+            ss << "<h4>Bloco " << numBlock  << " " << directionMove << " " <<  qtdMoves << (qtdMoves == 1 ? " posição" : " posições") << "</h4>" << endl;
+        }
+        ss << to_html() << endl;
+    } else {
+        if(numBlock == 0){
+            ss << "Bloco X " << directionMove << " " <<  qtdMoves << (qtdMoves == 1 ? " posicao" : " posicoes");
+        } else {
+            ss << "Bloco " << numBlock  << " " << directionMove << " " <<  qtdMoves << (qtdMoves == 1 ? " posicao" : " posicoes");
+        }
+    }
     moves.push(ss.str());
 }
 
@@ -92,6 +111,51 @@ string Snapshot::to_string()
     for(int i = 0; i < columns + 2; i++){ // final do tabuleiro
         ss << "*";
     }
+    return ss.str();
+}
+
+string Snapshot::to_html()
+{
+    bool* signals = new bool[blocks.size()];
+    memset(signals, false, sizeof(bool) * blocks.size());
+    stringstream ss;
+    ss << "<table border=\"5\" cellspacing=\"5\">" << endl;
+    ss << "<tbody>" << endl;
+    for(int i = 0; i < rows; i++){
+        ss << "<tr>" << endl;
+        for(int j = 0; j < columns; j++){
+            if(board[i][j] < 0){
+                ss << "<td height=\"50\" width=\"50\"></td>" << endl;
+            } else if(board[i][j] == 0){
+                if(!signals[0]){
+                    ss << "<td align=\"center\" height=\"50\" width=\"50\"";
+                    if(blocks.at(0).get_width() > 1){
+                        ss << " colspan=\"" << blocks.at(0).get_width() << "\"";
+                    }
+                    if(blocks.at(0).get_height() > 1){
+                        ss << " rowspan=\"" << blocks.at(0).get_height() << "\"";
+                    }
+                    ss << ">X</td>" << endl;
+                    signals[0] = true;
+                }
+            } else {
+                if(!signals[board[i][j]]){
+                    ss << "<td align=\"center\" height=\"50\" width=\"50\"";
+                    if(blocks.at(board[i][j]).get_width() > 1){
+                        ss << " colspan=\"" << blocks.at(board[i][j]).get_width() << "\"";
+                    }
+                    if(blocks.at(board[i][j]).get_height() > 1){
+                        ss << " rowspan=\"" << blocks.at(board[i][j]).get_height() << "\"";
+                    }
+                    ss << ">" << board[i][j] << "</td>" << endl;
+                    signals[board[i][j]] = true;
+                }
+            }
+        }
+        ss << "</tr>" << endl;
+    }
+    ss << "</tbody>" << endl;
+    ss << "</table>" << endl;
     return ss.str();
 }
 

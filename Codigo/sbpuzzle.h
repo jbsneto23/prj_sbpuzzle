@@ -51,22 +51,16 @@ class Puzzle
         Puzzle(string file);
         /** Default destructor */
         virtual ~Puzzle();
-        string to_string(); // retorna o tabuleiro em ascii
         int get_rows();
         int get_columns();
         int** get_board();
         vector<Block> get_blocks();
-        string rowMajor();
-        int hash(string str);
-        int hash();
     protected:
     private:
         int rows; // numero de linhas
         int columns; // numero de colunas
         int** board; // matriz que representa o tabuleiro: -1 representa os espaços vazios, 0 representa a peça alvo, 1..127 são os outros blocos
         vector<Block> blocks; // lista de blocos (peças) que também estão representadas no tabuleiro
-
-
 };
 // --------------------------------------------------------------------
 
@@ -76,10 +70,11 @@ class Snapshot
     public:
         /** Default constructor */
         Snapshot(int r, int c, int** b, vector<Block> bks); // construtor para o primeiro estado do tabuleiro (inicio)
-        Snapshot(int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtd);
+        Snapshot(bool html_mode, int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtd);
         /** Default destructor */
         virtual ~Snapshot();
         string to_string(); // retorna o tabuleiro em ascii
+        string to_html(); // retorna o tabuleiro em html (somente a parte table).
         int get_rows();
         int get_columns();
         int** get_board();
@@ -108,9 +103,7 @@ typedef struct Node {
 class HashTable
 {
     public:
-        /** Default constructor */
         HashTable(int r, int c);
-        /** Default destructor */
         virtual ~HashTable();
         int hash(string key);
         bool insert(string key, Snapshot* shot); // true se key não estiver na tabela (a inserção é feita) e false caso key já exista (nada é feito)
@@ -134,7 +127,9 @@ class sbpuzzle
         //sbpuzzle();
         /** Default destructor */
         //virtual ~sbpuzzle();
-        static void solucionar(string tabuleiro_file);
+        static Snapshot* solve(Snapshot* shot, bool html_mode);
+        static void solve_puzzle(string puzzle_file);
+        static void solve_puzzle_html(string puzzle_file);
     protected:
     private:
 };
