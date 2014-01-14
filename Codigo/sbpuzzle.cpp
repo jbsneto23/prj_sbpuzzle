@@ -550,23 +550,23 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                 // movendo para Leste
                 int qtd = 0;
                 int initC = c;
-                bool tentar = true;
-                int coluna = initC + w;
-                while(tentar && coluna < columns){
-                    bool livre = true;
+                bool tryIt = true;
+                int column = initC + w;
+                while(tryIt && column < columns){
+                    bool empty = true;
                     for(int k = r; k < r + h; k++){
-                        if(board[k][coluna] != -1){
-                            livre = false;
+                        if(board[k][column] != -1){
+                            empty = false;
                         }
                     }
-                    if(livre){
-                        // deixando a antiga coluna livre
+                    if(empty){
+                        // deixando a antiga coluna Livre
                         for(int k = r; k < r + h; k++){
                             board[k][initC] = -1;
                         }
                         // ocupando a coluna seguinta
                         for(int k = r; k < r + h; k++){
-                            board[k][coluna] = i;
+                            board[k][column] = i;
                         }
                         qtd += 1;
                         Block novoBlock(block.get_number(), block.get_row(), block.get_column() + qtd, block.get_width(), block.get_height(), block.get_direction());
@@ -579,11 +579,11 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                             if(table.insert(novoSs->get_key(), novoSs)){
                                 fila.push(novoSs->get_key());
                             }
-                            coluna += 1;
+                            column += 1;
                             initC += 1;
                         }
                     } else {
-                        tentar = false;
+                        tryIt = false;
                     }
                 }
 
@@ -595,21 +595,21 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                 }
 
                 // movendo para Oeste
-                tentar = true;
+                tryIt = true;
                 qtd = 0;
                 initC = c;
-                coluna = initC - 1;
-                while(tentar && coluna >= 0){
-                    bool livre = true;
+                column = initC - 1;
+                while(tryIt && column >= 0){
+                    bool empty = true;
                     for(int k = r; k < r + h; k++){
-                        if(board[k][coluna] != -1){
-                            livre = false;
+                        if(board[k][column] != -1){
+                            empty = false;
                         }
                     }
-                    if(livre){
+                    if(empty){
                         // ocupando a coluna anterior
                         for(int k = r; k < r + h; k++){
-                            board[k][coluna] = i;
+                            board[k][column] = i;
                         }
                         // liberando a coluna anti
                         for(int k = r; k < r + h; k++){
@@ -623,10 +623,10 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                         if(table.insert(novoSs->get_key(), novoSs)){
                             fila.push(novoSs->get_key());
                         }
-                        coluna -= 1;
+                        column -= 1;
                         initC -= 1;
                     } else {
-                        tentar = false;
+                        tryIt = false;
                     }
                 }
 
@@ -644,19 +644,19 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                 // movendo para Norte
                 int qtd = 0;
                 int initR = r;
-                bool tentar = true;
-                int linha = initR - 1;
-                while(tentar && linha >= 0){
-                    bool livre = true;
+                bool tryIt = true;
+                int row = initR - 1;
+                while(tryIt && row >= 0){
+                    bool empty = true;
                     for(int k = c; k <  c + w; k++){
-                        if(board[linha][k] != -1){
-                            livre = false;
+                        if(board[row][k] != -1){
+                            empty = false;
                         }
                     }
-                    if(livre){
+                    if(empty){
                         // ocupando a linha de cima
                         for(int k = c; k <  c + w; k++){
-                            board[linha][k] = i;
+                            board[row][k] = i;
                         }
                         // liberando a linha de cima
                         for(int k = c; k <  c + w; k++){
@@ -670,10 +670,10 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                         if(table.insert(novoSs->get_key(), novoSs)){
                             fila.push(novoSs->get_key());
                         }
-                        linha -= 1;
+                        row -= 1;
                         initR -= 1;
                     } else {
-                        tentar = false;
+                        tryIt = false;
                     }
                 }
 
@@ -687,22 +687,22 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                 // movendo para Sul
                 qtd = 0;
                 initR = r;
-                linha = initR + h;
-                while(tentar && linha < rows){
-                    bool livre = true;
+                row = initR + h;
+                while(tryIt && row < rows){
+                    bool empty = true;
                     for(int k = c; k <  c + w; k++){
-                        if(board[linha][k] != -1){
-                            livre = false;
+                        if(board[row][k] != -1){
+                            empty = false;
                         }
                     }
-                    if(livre){
+                    if(empty){
                         // liberando a linha de cima
                         for(int k = c; k <  c + w; k++){
                             board[initR][k] = -1;
                         }
                         // ocupando a linha de baixo
                         for(int k = c; k <  c + w; k++){
-                            board[linha][k] = i;
+                            board[row][k] = i;
                         }
                         qtd += 1;
                         Block novoBlock(block.get_number(), block.get_row() + qtd, block.get_column(), block.get_width(), block.get_height(), block.get_direction());
@@ -712,10 +712,10 @@ Snapshot* sbpuzzle::solve(Snapshot* snap, bool html_mode)
                         if(table.insert(novoSs->get_key(), novoSs)){
                             fila.push(novoSs->get_key());
                         }
-                        linha += 1;
+                        row += 1;
                         initR += 1;
                     } else {
-                        tentar = false;
+                        tryIt = false;
                     }
                 }
 
