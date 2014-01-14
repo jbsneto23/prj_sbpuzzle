@@ -8,11 +8,6 @@ using namespace std;
 #include "sbpuzzle.h"
 
 // ------------------------ block.cpp ------------------------
-Block::Block()
-{
-    //ctor
-}
-
 Block::Block(int n, int r, int c, int w, int h, char d)
 {
     set_number(n);

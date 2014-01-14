@@ -14,10 +14,7 @@ using namespace std;
 class Block
 {
     public:
-        /** Default constructor */
-        Block();
         Block(int n, int r, int c, int w, int h, char d);
-        /** Default destructor */
         virtual ~Block();
         int get_number();
         void set_number(int n);
@@ -47,9 +44,7 @@ class Puzzle
 {
     public:
         static const int MAX_SIZE = 80; // tamanho máximo que o tabuleiro pode ter (linhas e colunas)
-        /** Default constructor */
         Puzzle(string file);
-        /** Default destructor */
         virtual ~Puzzle();
         int get_rows();
         int get_columns();
@@ -68,10 +63,8 @@ class Puzzle
 class Snapshot
 {
     public:
-        /** Default constructor */
         Snapshot(int r, int c, int** b, vector<Block> bks); // construtor para o primeiro estado do tabuleiro (inicio)
         Snapshot(bool html_mode, int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtd);
-        /** Default destructor */
         virtual ~Snapshot();
         string to_string(); // retorna o tabuleiro em ascii
         string to_html(); // retorna o tabuleiro em html (somente a parte table).
@@ -120,15 +113,41 @@ class HashTable
 };
 // -----------------------------------------------------------------
 
+/**
+*
+* Classe principal do programa, responsável por ler o arquivo de entrada e retornar a solução do quebra-cabeça.
+*
+* @author João
+* @author Ingrid
+*/
 class sbpuzzle
 {
     public:
-        /** Default constructor */
-        //sbpuzzle();
-        /** Default destructor */
-        //virtual ~sbpuzzle();
+
+        /**
+        *
+        * Função que recebe o Snapshot do estado inicial de um quebra-cabeça e retorna o Snapshot da solução deste quebra-cabeça ou NULL caso não tenha solução.
+        *
+        * @param shot Snapshot do estado inicial do quebra-cabeça.
+        * @param html_mode Flag que indica se o resultado das menságens deve ser em ASCII ou em HTML.
+        * @return Snapshot da solução ou NULL caso o quebra-cabeça não tenha solução.
+        */
         static Snapshot* solve(Snapshot* shot, bool html_mode);
+
+        /**
+        *
+        * Função que recebe o arquivo de entrada de um quebra-cabeça, soluciona-o e imprime na tela os resultados.
+        *
+        * @param puzzle_file Nome do arquivo que contém as informações do quebra-cabeça.
+        */
         static void solve_puzzle(string puzzle_file);
+
+        /**
+        *
+        * Função que recebe o arquivo de entrada de um quebra-cabeça, soluciona-o e gera um documento HTML com os resultados.
+        *
+        * @param puzzle_file Nome do arquivo que contém as informações do quebra-cabeça.
+        */
         static void solve_puzzle_html(string puzzle_file);
     protected:
     private:
