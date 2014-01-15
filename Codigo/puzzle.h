@@ -12,15 +12,15 @@ using namespace std;
 
 /**
 *
-* A classe Puzzle representa o quebra-cabeça. É responsável por ler o arquivo de entrada e validá-lo, gerando o estado inicial.
+* A classe Puzzle representa o quebra-cabea. ƒ respons‡vel por ler o arquivo de entrada e valid‡-lo, gerando o estado inicial.
 *
-* @author João
+* @author Jo‹o
 * @author Ingrid
 */
 class Puzzle
 {
     public:
-        static const int MAX_SIZE = 80; // tamanho máximo que o tabuleiro pode ter (linhas e colunas)
+        static const int MAX_SIZE = 80; // tamanho m‡ximo que o tabuleiro pode ter (linhas e colunas)
 
         /**
         *
@@ -32,30 +32,30 @@ class Puzzle
 
         /**
         *
-        * Destrutor que libera a memória alocada pela classe Puzzle.
+        * Destrutor que libera a mem—ria alocada pela classe Puzzle.
         *
         */
         virtual ~Puzzle();
 
         /**
         *
-        * Função que recupera o número de linhas de um tabuleiro.
+        * Fun‹o que recupera o nœmero de linhas de um tabuleiro.
         *
-        * @return O número de linhas.
+        * @return O nœmero de linhas.
         */
         int get_rows();
 
         /**
         *
-        * Função que recupera o número de colunas de um tabuleiro.
+        * Fun‹o que recupera o nœmero de colunas de um tabuleiro.
         *
-        * @return O número de colunas.
+        * @return O nœmero de colunas.
         */
         int get_columns();
 
         /**
         *
-        * Função recupera a matriz que representa o tabuleiro.
+        * Fun‹o recupera a matriz que representa o tabuleiro.
         *
         * @return Matriz de inteiros.
         */
@@ -63,7 +63,7 @@ class Puzzle
 
         /**
         *
-        * Função que recupera a lista de blocos do tabuleiro.
+        * Fun‹o que recupera a lista de blocos do tabuleiro.
         *
         * @return A lista de blocos.
         */
@@ -73,7 +73,7 @@ class Puzzle
         int rows; // numero de linhas
         int columns; // numero de colunas
         int** board; // matriz que representa o tabuleiro: -1 representa os espaços vazios, 0 representa a peça alvo, 1..127 são os outros blocos
-        vector<Block> blocks; // lista de blocos (peças) que também estão representadas no tabuleiro
+        vector<Block> blocks; // lista de blocos (peas) que tambem est‹o representadas no tabuleiro
 };
 
 #endif // PUZZLE_H

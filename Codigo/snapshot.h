@@ -13,9 +13,9 @@ using namespace std;
 
 /**
 *
-* A classe Snapshot representa um estado do tabuleiro, gaurdando todas as posiÁıes dos blocos e todas as movimentaÁıes feitas atÈ se chegar neste estado.
+* A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas as movimentações feitas até se chegar neste estado.
 *
-* @author Jo„o
+* @author João
 * @author Ingrid
 */
 class Snapshot
@@ -26,8 +26,8 @@ class Snapshot
         *
         * Construtor utilizado para gerar um Snapshot (fotografia) do estado inicial.
         *
-        * @param r N˙mero de linhas do tabuleiro.
-        * @param c N˙mero de colunas do tabuleiro.
+        * @param r Número de linhas do tabuleiro.
+        * @param c Número de colunas do tabuleiro.
         * @param b Matriz que representa o tabuleiro.
         * @param bks Lista de blocos.
         */
@@ -35,29 +35,29 @@ class Snapshot
 
         /**
         *
-        * Construtor utilizado para gerar um Snapshot (fotografia) de um estado do tabuleiro gerado a partir da movimentaÁ„o de um bloco.
+        * Construtor utilizado para gerar um Snapshot (fotografia) de um estado do tabuleiro gerado a partir da movimentação de um bloco.
         *
-        * @param r N˙mero de linhas do tabuleiro.
-        * @param c N˙mero de colunas do tabuleiro.
+        * @param r Número de linhas do tabuleiro.
+        * @param c Número de colunas do tabuleiro.
         * @param b Matriz que representa o tabuleiro.
         * @param bks Lista de blocos.
         * @param m Fila de movimentos (deve ser passado a fila do Snapshot que partiu esse estado).
-        * @param numBlock N˙mero do blovo que se moveu.
-        * @param directionMove DireÁ„o pra qual o bloco se moveu.
-        * @param qtd Quantidade de posiÁıes que o bloco se moveu.
+        * @param numBlock Número do blovo que se moveu.
+        * @param directionMove Direção pra qual o bloco se moveu.
+        * @param qtd Quantidade de possíveis que o bloco se moveu.
         */
         Snapshot(bool html_mode, int r, int c, int** b, vector<Block> bks, queue<string> m, int numBlock, string directionMove, int qtd);
 
         /**
         *
-        * Destrutor que libera a memÛria alocada pela classe Snapshot.
+        * Destrutor que libera a memória alocada pela classe Snapshot.
         *
         */
         virtual ~Snapshot();
 
         /**
         *
-        * FunÁ„o que retorna o tabuleiro em ASCII.
+        * Função que retorna o tabuleiro em ASCII.
         *
         * @return o tabuleiro em modo texto.
         */
@@ -65,7 +65,7 @@ class Snapshot
 
         /**
         *
-        * FunÁ„o que retorna o tabuleiro em HTML.
+        * Função que retorna o tabuleiro em HTML.
         *
         * @return o HTML de uma tabela contendo os dados do tabuleiro.
         */
@@ -73,23 +73,23 @@ class Snapshot
 
         /**
         *
-        * FunÁ„o que recupera o n˙mero de linhas de um tabuleiro.
+        * Função que recupera o número de linhas de um tabuleiro.
         *
-        * @return O n˙mero de linhas.
+        * @return O número de linhas.
         */
         int get_rows();
 
         /**
         *
-        * FunÁ„o que recupera o n˙mero de colunas de um tabuleiro.
+        * Função que recupera o número de colunas de um tabuleiro.
         *
-        * @return O n˙mero de colunas.
+        * @return O número de colunas.
         */
         int get_columns();
 
         /**
         *
-        * FunÁ„o recupera a matriz que representa o tabuleiro.
+        * Função recupera a matriz que representa o tabuleiro.
         *
         * @return Matriz de inteiros.
         */
@@ -97,7 +97,7 @@ class Snapshot
 
         /**
         *
-        * FunÁ„o que recupera a lista de blocos do tabuleiro.
+        * Função que recupera a lista de blocos do tabuleiro.
         *
         * @return A lista de blocos.
         */
@@ -105,7 +105,7 @@ class Snapshot
 
         /**
         *
-        * FunÁ„o que recupera a fila de movimentos feitos atÈ se chegar neste estado.
+        * Função que recupera a fila de movimentos feitos até se chegar neste estado.
         *
         * @return a fila de movimento.
         */
@@ -113,7 +113,7 @@ class Snapshot
 
         /**
         *
-        * FunÁ„o que recupera a chave de um snapshot, que sua matriz de tabuleiro representada na forma row-major.
+        * Função que recupera a chave de um snapshot, que sua matriz de tabuleiro representada na forma row-major.
         *
         * @return a chave do snapshot.
         */
@@ -121,14 +121,14 @@ class Snapshot
 
         /**
         *
-        * FunÁ„o que verifica se o snapshot È uma soluÁ„o, ou seja, se o bloco-alvo atingiu a posiÁ„o-alvo.
+        * Função que verifica se o snapshot é uma solução, ou seja, se o bloco-alvo atingiu a posição-alvo.
         *
-        * @return true se o snapshot atual È a soluÁ„o, e false, caso contr·rio.
+        * @return true se o snapshot atual é a solução, e false, caso contrário.
         */
-        bool is_solution(); // verifica se esse snapshot È um soluÁ„o, ou seja, verifica se a peÁa alvo chegou a aresta da direita
+        bool is_solution(); // verifica se esse snapshot é um solução, ou seja, verifica se a peça alvo chegou a aresta da direita
     protected:
     private:
-        string key; // chave da tabela hash que È construida no construtor
+        string key; // chave da tabela hash que é construida no construtor
         int rows;
         int columns;
         int** board;

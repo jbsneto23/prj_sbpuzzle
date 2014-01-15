@@ -3,6 +3,8 @@
 #include <sstream>
 #include <vector>
 #include <queue>
+#include <stdlib.h>
+#include <string.h>
 
 #include "block.h"
 

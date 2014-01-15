@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Quebra-Cabe√ßa de Blocos Deslizantes: C√≥digo-Fonte de block.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Quebra-Cabe√ßa de Blocos Deslizantes
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>P√°gina&#160;Principal</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fun√ß√µes</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">block.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef BLOCK_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define BLOCK_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_block.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_block.html">Block</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="class_block.html#a5ddc89836a298a731af373a3e2216184">Block</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> r, <span class="keywordtype">int</span> c, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h, <span class="keywordtype">char</span> d);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="class_block.html#a19d1bd0e1cef6a865ed2745a2e648405">~Block</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_block.html#a441aaf41bef48d6007fd5ca430038873">get_number</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_block.html#ac29478bcd2f36f1b3137eedebc4f19f9">set_number</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_block.html#aaa3d74f98977dba6e5306a875cca843d">get_row</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_block.html#a23c82115f05c6694bb2cfbf6f103fad1">set_row</a>(<span class="keywordtype">int</span> r);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_block.html#a0748279acfacb618c1bf38369926067f">get_column</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_block.html#aa2001ad0d9260b694110f33db18e8521">set_column</a>(<span class="keywordtype">int</span> c);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_block.html#ae55e7a36f85cd94b2da34e88d3b5ff89">get_width</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_block.html#a040a7a4ee926fba8b8933febf43c825e">set_width</a>(<span class="keywordtype">int</span> w);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_block.html#aa57d3da51aaca2d5ccf6474e7bca6096">get_height</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_block.html#a0bfe61fcb0be3d22f08c016f45ca26b5">set_height</a>(<span class="keywordtype">int</span> h);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordtype">char</span> <a class="code" href="class_block.html#a028400f2333a6d4c5ba05dfed7570b0f">get_direction</a>();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_block.html#a71a71a88be745e2a4a5784086dadadce">set_direction</a>(<span class="keywordtype">char</span> d);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordtype">int</span> number; <span class="comment">// numero do bloco: 0 se for a peça alvo e &gt; 0 se for outra peça</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordtype">int</span> row; <span class="comment">// linha</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordtype">int</span> column; <span class="comment">// coluna</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordtype">int</span> width; <span class="comment">// largura</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordtype">int</span> height; <span class="comment">// altura</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordtype">char</span> direction; <span class="comment">// Direção</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;};</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#endif // BLOCK_H</span></div>
+<div class="ttc" id="class_block_html_a028400f2333a6d4c5ba05dfed7570b0f"><div class="ttname"><a href="class_block.html#a028400f2333a6d4c5ba05dfed7570b0f">Block::get_direction</a></div><div class="ttdeci">char get_direction()</div><div class="ttdoc">Função que recupera a Direção de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:68</div></div>
+<div class="ttc" id="class_block_html_a19d1bd0e1cef6a865ed2745a2e648405"><div class="ttname"><a href="class_block.html#a19d1bd0e1cef6a865ed2745a2e648405">Block::~Block</a></div><div class="ttdeci">virtual ~Block()</div><div class="ttdoc">Destrutor que libera a memória alocada pela classe Block. </div><div class="ttdef"><b>Definition:</b> block.cpp:13</div></div>
+<div class="ttc" id="class_block_html_a5ddc89836a298a731af373a3e2216184"><div class="ttname"><a href="class_block.html#a5ddc89836a298a731af373a3e2216184">Block::Block</a></div><div class="ttdeci">Block(int n, int r, int c, int w, int h, char d)</div><div class="ttdoc">Construtor que configura um objeto do tipo Block. </div><div class="ttdef"><b>Definition:</b> block.cpp:3</div></div>
+<div class="ttc" id="class_block_html_aaa3d74f98977dba6e5306a875cca843d"><div class="ttname"><a href="class_block.html#aaa3d74f98977dba6e5306a875cca843d">Block::get_row</a></div><div class="ttdeci">int get_row()</div><div class="ttdoc">Função que recupera a linha de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:28</div></div>
+<div class="ttc" id="class_block_html_ac29478bcd2f36f1b3137eedebc4f19f9"><div class="ttname"><a href="class_block.html#ac29478bcd2f36f1b3137eedebc4f19f9">Block::set_number</a></div><div class="ttdeci">void set_number(int n)</div><div class="ttdoc">Função que grava um Número no bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:23</div></div>
+<div class="ttc" id="class_block_html_aa57d3da51aaca2d5ccf6474e7bca6096"><div class="ttname"><a href="class_block.html#aa57d3da51aaca2d5ccf6474e7bca6096">Block::get_height</a></div><div class="ttdeci">int get_height()</div><div class="ttdoc">Função que recupera a altura de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:58</div></div>
+<div class="ttc" id="class_block_html_ae55e7a36f85cd94b2da34e88d3b5ff89"><div class="ttname"><a href="class_block.html#ae55e7a36f85cd94b2da34e88d3b5ff89">Block::get_width</a></div><div class="ttdeci">int get_width()</div><div class="ttdoc">Função que recupera a largura de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:48</div></div>
+<div class="ttc" id="class_block_html_a040a7a4ee926fba8b8933febf43c825e"><div class="ttname"><a href="class_block.html#a040a7a4ee926fba8b8933febf43c825e">Block::set_width</a></div><div class="ttdeci">void set_width(int w)</div><div class="ttdoc">Função que grava a largura de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:53</div></div>
+<div class="ttc" id="class_block_html"><div class="ttname"><a href="class_block.html">Block</a></div><div class="ttdoc">A classe Block representa um bloco em um tabuleiro. </div><div class="ttdef"><b>Definition:</b> block.h:11</div></div>
+<div class="ttc" id="class_block_html_a71a71a88be745e2a4a5784086dadadce"><div class="ttname"><a href="class_block.html#a71a71a88be745e2a4a5784086dadadce">Block::set_direction</a></div><div class="ttdeci">void set_direction(char d)</div><div class="ttdoc">Função que grava a Direção de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:73</div></div>
+<div class="ttc" id="class_block_html_a23c82115f05c6694bb2cfbf6f103fad1"><div class="ttname"><a href="class_block.html#a23c82115f05c6694bb2cfbf6f103fad1">Block::set_row</a></div><div class="ttdeci">void set_row(int r)</div><div class="ttdoc">Função que grava uma linha. </div><div class="ttdef"><b>Definition:</b> block.cpp:33</div></div>
+<div class="ttc" id="class_block_html_aa2001ad0d9260b694110f33db18e8521"><div class="ttname"><a href="class_block.html#aa2001ad0d9260b694110f33db18e8521">Block::set_column</a></div><div class="ttdeci">void set_column(int c)</div><div class="ttdoc">Função que grava uma coluna. </div><div class="ttdef"><b>Definition:</b> block.cpp:43</div></div>
+<div class="ttc" id="class_block_html_a0748279acfacb618c1bf38369926067f"><div class="ttname"><a href="class_block.html#a0748279acfacb618c1bf38369926067f">Block::get_column</a></div><div class="ttdeci">int get_column()</div><div class="ttdoc">Função que recupera a coluna de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:38</div></div>
+<div class="ttc" id="class_block_html_a0bfe61fcb0be3d22f08c016f45ca26b5"><div class="ttname"><a href="class_block.html#a0bfe61fcb0be3d22f08c016f45ca26b5">Block::set_height</a></div><div class="ttdeci">void set_height(int h)</div><div class="ttdoc">Função que grava a altura de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:63</div></div>
+<div class="ttc" id="class_block_html_a441aaf41bef48d6007fd5ca430038873"><div class="ttname"><a href="class_block.html#a441aaf41bef48d6007fd5ca430038873">Block::get_number</a></div><div class="ttdeci">int get_number()</div><div class="ttdoc">Função que recupera o Número de um bloco. </div><div class="ttdef"><b>Definition:</b> block.cpp:18</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Ter√ßa, 14 de Janeiro de 2014 20:50:59 para Quebra-Cabe√ßa de Blocos Deslizantes por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

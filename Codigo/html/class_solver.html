@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Quebra-Cabe√ßa de Blocos Deslizantes: Refer√™ncia da Classe Solver</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Quebra-Cabe√ßa de Blocos Deslizantes
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>P√°gina&#160;Principal</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Lista&#160;de&#160;Componentes</span></a></li>
+      <li><a href="classes.html"><span>√çndice&#160;dos&#160;Componentes</span></a></li>
+      <li><a href="functions.html"><span>Componentes&#160;Membros</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fun√ß√µes</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">M√©todos P√∫blicos Est√°ticos</a> &#124;
+<a href="class_solver-members.html">Lista de todos os Membros</a>  </div>
+  <div class="headertitle">
+<div class="title">Refer√™ncia da Classe Solver</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Classe principal do programa, responsável por ler o arquivo de entrada e retornar a solução do quebra-cabeça.  
+ <a href="class_solver.html#details">Mais...</a></p>
+
+<p><code>#include &lt;<a class="el" href="solver_8h_source.html">solver.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+M√©todos P√∫blicos Est√°ticos</h2></td></tr>
+<tr class="memitem:a2d2b9fa0faaf44230262711d1e281bc0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_snapshot.html">Snapshot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_solver.html#a2d2b9fa0faaf44230262711d1e281bc0">solve</a> (<a class="el" href="class_snapshot.html">Snapshot</a> *shot, bool html_mode)</td></tr>
+<tr class="memdesc:a2d2b9fa0faaf44230262711d1e281bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função que recebe o <a class="el" href="class_snapshot.html" title="A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas ...">Snapshot</a> do estado inicial de um quebra-cabeça e retorna o <a class="el" href="class_snapshot.html" title="A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas ...">Snapshot</a> da solução deste quebra-cabeça ou NULL caso não tenha solução.  <a href="#a2d2b9fa0faaf44230262711d1e281bc0">Mais...</a><br/></td></tr>
+<tr class="separator:a2d2b9fa0faaf44230262711d1e281bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b26cbefa1e58f4e93453083427f8d27"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_solver.html#a9b26cbefa1e58f4e93453083427f8d27">solve_puzzle</a> (string puzzle_file)</td></tr>
+<tr class="memdesc:a9b26cbefa1e58f4e93453083427f8d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função que recebe o arquivo de entrada de um quebra-cabeça, soluciona-o e imprime na tela os resultados.  <a href="#a9b26cbefa1e58f4e93453083427f8d27">Mais...</a><br/></td></tr>
+<tr class="separator:a9b26cbefa1e58f4e93453083427f8d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acced45b2b4e09a6377c0fc3dec483878"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_solver.html#acced45b2b4e09a6377c0fc3dec483878">solve_puzzle_html</a> (string puzzle_file)</td></tr>
+<tr class="memdesc:acced45b2b4e09a6377c0fc3dec483878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função que recebe o arquivo de entrada de um quebra-cabeça, soluciona-o e gera um documento HTML com os resultados.  <a href="#acced45b2b4e09a6377c0fc3dec483878">Mais...</a><br/></td></tr>
+<tr class="separator:acced45b2b4e09a6377c0fc3dec483878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descri√ß√£o Detalhada</h2>
+<div class="textblock"><p>Classe principal do programa, responsável por ler o arquivo de entrada e retornar a solução do quebra-cabeça. </p>
+<dl class="section author"><dt>Autor</dt><dd>João </dd>
+<dd>
+Ingrid </dd></dl>
+</div><h2 class="groupheader">M√©todos</h2>
+<a class="anchor" id="a2d2b9fa0faaf44230262711d1e281bc0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snapshot.html">Snapshot</a> * Solver::solve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_snapshot.html">Snapshot</a> *&#160;</td>
+          <td class="paramname"><em>shot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>html_mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Função que recebe o <a class="el" href="class_snapshot.html" title="A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas ...">Snapshot</a> do estado inicial de um quebra-cabeça e retorna o <a class="el" href="class_snapshot.html" title="A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas ...">Snapshot</a> da solução deste quebra-cabeça ou NULL caso não tenha solução. </p>
+<dl class="params"><dt>Par√¢metros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shot</td><td><a class="el" href="class_snapshot.html" title="A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas ...">Snapshot</a> do estado inicial do quebra-cabeça. </td></tr>
+    <tr><td class="paramname">html_mode</td><td>Flag que indica se o resultado das mensagens deve ser em ASCII ou em HTML. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><a class="el" href="class_snapshot.html" title="A classe Snapshot representa um estado do tabuleiro, gaurdando todas as possíveis dos blocos e todas ...">Snapshot</a> da solução ou NULL caso o quebra-cabeça não tenha solução. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9b26cbefa1e58f4e93453083427f8d27"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Solver::solve_puzzle </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>puzzle_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Função que recebe o arquivo de entrada de um quebra-cabeça, soluciona-o e imprime na tela os resultados. </p>
+<dl class="params"><dt>Par√¢metros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">puzzle_file</td><td>Nome do arquivo que contem as informações do quebra-cabeça. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="acced45b2b4e09a6377c0fc3dec483878"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Solver::solve_puzzle_html </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>puzzle_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Função que recebe o arquivo de entrada de um quebra-cabeça, soluciona-o e gera um documento HTML com os resultados. </p>
+<dl class="params"><dt>Par√¢metros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">puzzle_file</td><td>Nome do arquivo que contem as informações do quebra-cabeça. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>A documenta√ß√£o para esta classe foi gerada a partir dos seguintes arquivos:<ul>
+<li><a class="el" href="solver_8h_source.html">solver.h</a></li>
+<li>solver.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Ter√ßa, 14 de Janeiro de 2014 20:50:59 para Quebra-Cabe√ßa de Blocos Deslizantes por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

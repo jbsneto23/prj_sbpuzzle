@@ -10,7 +10,7 @@ using namespace std;
 
 /**
 *
-*   Estrutura que representa um nÛ de uma lista simplesmente encadeada.
+*   Estrutura que representa um nó de uma lista simplesmente encadeada.
 *
 */
 typedef struct Node {
@@ -21,9 +21,9 @@ typedef struct Node {
 
 /**
 *
-*   A classe HashTable representa uma tabela de dispers„o de objetos do tipo Snapshot.
+*   A classe HashTable representa uma tabela de dispersão de objetos do tipo Snapshot.
 *
-*   @author Jo„o
+*   @author João
 *   @author Ingrid
 */
 class HashTable
@@ -32,60 +32,60 @@ class HashTable
 
         /**
         *
-        *   Construtor que configura um objeto do tipo HashTable, criando uma tabela com r vezes c posiÁıes.
+        *   Construtor que configura um objeto do tipo HashTable, criando uma tabela com r vezes c posições.
         *
-        *   @param r N˙mero de linhas dos Snapshots que ser„o inseridos na tabela.
-        *   @param c N˙mero de colunas dos Snapshots que ser„o inseridos na tabela.
+        *   @param r Número de linhas dos Snapshots que serão inseridos na tabela.
+        *   @param c Número de colunas dos Snapshots que serão inseridos na tabela.
         */
         HashTable(int r, int c);
 
         /**
         *
-        *   Destrutor que libera a memÛria alocada pela classe HashTable.
+        *   Destrutor que libera a memória alocada pela classe HashTable.
         *
         */
         virtual ~HashTable();
 
         /**
         *
-        *   FunÁ„o de dispers„o que calcula o Ìndice de um objeto na tabela.
+        *   Função de dispersão que calcula o índice de um objeto na tabela.
         *
-        *   @param key Chave de um objeto Snapshot, que È a sua matriz que representa o tabuleiro na forma row-major.
+        *   @param key Chave de um objeto Snapshot, que é a sua matriz que representa o tabuleiro na forma row-major.
         */
         int hash(string key);
 
         /**
         *
-        *   FunÁ„o que insere um elemento na tabela.
+        *   Função que insere um elemento na tabela.
         *
-        *   @param key Chave de um objeto Snapshot, que È a sua matriz que representa o tabuleiro na forma row-major.
+        *   @param key Chave de um objeto Snapshot, que é a sua matriz que representa o tabuleiro na forma row-major.
         *   @param shot Ponteiro para um objeto do tipo Snapshot.
         *
-        *   @return true se o elemento j· n„o estiver na tabela e a inserÁ„o for feita e false se o elemento j· estiver na tabela.
+        *   @return true se o elemento já não estiver na tabela e a inserção for feita e false se o elemento já estiver na tabela.
         */
-        bool insert(string key, Snapshot* shot); // true se key n„o estiver na tabela (a inserÁ„o È feita) e false caso key j· exista (nada È feito)
+        bool insert(string key, Snapshot* shot); // true se key não estiver na tabela (a inserção é feita) e false caso key já exista (nada é feito)
 
         /**
         *
-        *   FunÁ„o que busca um elemento na tabela.
+        *   Função que busca um elemento na tabela.
         *
-        *   @param key Chave de um objeto Snapshot, que È a sua matriz que representa o tabuleiro na forma row-major.
+        *   @param key Chave de um objeto Snapshot, que é a sua matriz que representa o tabuleiro na forma row-major.
         *
         *   @return Um ponteiro para um objeto do tipo Snapshot caso exista a chave na tabela ou NULL caso contr·rio.
         */
-        Snapshot* get(string key); // retorna ponteiro para objeto Snapshot se key estiver na tabela e NULL caso key n„o esteja na tabela
+        Snapshot* get(string key); // retorna ponteiro para objeto Snapshot se key estiver na tabela e NULL caso key não esteja na tabela
 
         /**
         *
-        *   FunÁ„o que retorna o n˙mero de objetos na tabela.
+        *   Função que retorna o Número de objetos na tabela.
         *
-        *   @return N˙mero de objetos na tabela.
+        *   @return Número de objetos na tabela.
         */
         int size();
 
         /**
         *
-        *   FunÁ„o que imprime todo conte˙do da tabela.
+        *   Função que imprime todo conteúdo da tabela.
         *
         */
         void print_content(); // imprime o conteudo da hashtable

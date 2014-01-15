@@ -3,6 +3,8 @@
 #include <sstream>
 #include <list>
 #include <fstream>
+#include <stdlib.h>
+#include <string.h>
 
 #include "block.h"
 
